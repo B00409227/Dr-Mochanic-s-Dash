@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-export const theme = createTheme({
+const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
@@ -86,3 +86,5 @@ export const theme = createTheme({
     // ... add more shadow definitions if needed
   ],
 });
+
+export default theme;

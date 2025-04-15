@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback, memo } from 'react';
 import { 
   Box, 
   Typography, 
@@ -6,7 +6,9 @@ import {
   Paper,
   LinearProgress,
   Fade,
-  IconButton
+  IconButton,
+  Tooltip,
+  Button
 } from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
@@ -17,6 +19,7 @@ const Scanner = ({ onDetection = () => {} }) => {
   const webcamRef = useRef(null);
   const webcamInstanceRef = useRef(null);
   const modelRef = useRef(null);
+  const animationFrameRef = useRef(null); // Add this to track animation frame
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,6 +39,8 @@ const Scanner = ({ onDetection = () => {} }) => {
 
   // Import dashboard data
   const [warningData] = useState(dashboardData);
+  
+  const [facingMode, setFacingMode] = useState('environment'); // Default to back camera
   
   const checkFrameQuality = (canvas) => {
     const ctx = canvas.getContext('2d');
@@ -93,7 +98,7 @@ const Scanner = ({ onDetection = () => {} }) => {
     };
   };
 
-  const processFrame = async () => {
+  const processFrame = useCallback(async () => {
     if (!webcamInstanceRef.current?.canvas || !modelRef.current) return;
 
     try {
@@ -134,177 +139,141 @@ const Scanner = ({ onDetection = () => {} }) => {
     } catch (error) {
       console.error('Frame processing error:', error);
     }
+  }, [warningData]);
+
+  // Define the prediction loop function with useCallback
+  const loop = useCallback(() => {
+    if (webcamInstanceRef.current && modelRef.current) {
+      processFrame();
+      animationFrameRef.current = window.requestAnimationFrame(loop);
+    }
+  }, [processFrame]);
+
+  // Initialize camera with better mobile support
+  const initCamera = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      // Check if browser supports mediaDevices
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Camera not supported on this device/browser');
+      }
+
+      // Get available video devices
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const videoDevices = devices.filter(device => device.kind === 'videoinput');
+
+      // Setup camera with preferred settings
+      const constraints = {
+        video: {
+          facingMode: facingMode, // 'environment' for back camera, 'user' for front
+          width: { ideal: 1920 },
+          height: { ideal: 1080 },
+          frameRate: { ideal: 30 }
+        }
+      };
+
+      // Get video stream
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      
+      if (webcamRef.current) {
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        video.autoplay = true;
+        video.playsInline = true; // Important for iOS
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'cover';
+        
+        webcamRef.current.innerHTML = '';
+        webcamRef.current.appendChild(video);
+      }
+
+      setIsLoading(false);
+    } catch (err) {
+      console.error('Camera initialization error:', err);
+      setError('Failed to access camera. Please ensure camera permissions are granted.');
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    let model, webcam;
-    let isActive = true; // For cleanup
-    
-    const init = async () => {
-      try {
-        setIsLoading(true);
-        
-        // Wait for tmImage to be available
-        if (!window.tmImage) {
-          throw new Error('Teachable Machine library not loaded');
-        }
-
-        // Load the model
-        console.log('Loading model...');
-        model = await window.tmImage.load(
-          '/models/model.json',
-          '/models/metadata.json'
-        );
-        
-        // Setup webcam
-        console.log('Setting up webcam...');
-        webcam = new window.tmImage.Webcam(200, 200, true);
-        await webcam.setup();
-        await webcam.play();
-        
-        // Add webcam canvas to DOM
-        if (webcamRef.current && isActive) {
-          webcamRef.current.innerHTML = ''; // Clear any existing content
-          webcamRef.current.appendChild(webcam.canvas);
-        }
-        
-        setIsLoading(false);
-        
-        // Start prediction loop
-        const loop = async () => {
-          if (!isActive) return; // Stop if component unmounted
-
-          webcam.update();
-          const predictions = await model.predict(webcam.canvas);
-          
-          if (isActive) {
-            setPredictions(predictions);
-            
-            // Check for high confidence predictions
-            const highConfidencePrediction = predictions.find(p => p.probability > 0.9);
-            if (highConfidencePrediction) {
-              try {
-                onDetection(highConfidencePrediction.className);
-              } catch (err) {
-                console.error('Error in detection handler:', err);
-              }
-            }
-            
-            requestAnimationFrame(loop);
-          }
-        };
-        
-        if (isActive) {
-          loop();
-        }
-      } catch (err) {
-        console.error('Initialization error:', err);
-        if (isActive) {
-          setError(err.message);
-          setIsLoading(false);
-        }
-      }
-    };
-    
-    // Small delay to ensure scripts are loaded
-    setTimeout(init, 1000);
-    
-    // Cleanup
+    initCamera();
     return () => {
-      isActive = false;
-      if (webcam) {
-        webcam.stop();
+      // Cleanup: stop all tracks when component unmounts
+      if (webcamRef.current?.querySelector('video')?.srcObject) {
+        const tracks = webcamRef.current.querySelector('video').srcObject.getTracks();
+        tracks.forEach(track => track.stop());
       }
     };
-  }, [onDetection]);
-
-  if (error) {
-    return (
-      <Box sx={{ p: 2, color: 'error.main' }}>
-        Error: {error}
-      </Box>
-    );
-  }
+  }, [facingMode]);
 
   return (
     <Box sx={{ 
       width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 2
+      height: '100%',
+      position: 'relative'
     }}>
-      {/* Camera View Container */}
+      {/* Camera Container */}
       <Paper elevation={3} sx={{ 
         position: 'relative',
-        borderRadius: 2,
+        height: '80vh',
         overflow: 'hidden',
         bgcolor: '#000',
-        aspectRatio: '4/3'
+        borderRadius: 2
       }}>
         {/* Camera Feed */}
-        <div ref={webcamRef} style={{ 
+        <Box ref={webcamRef} sx={{
           width: '100%',
           height: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
+          '& > video': {
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }
         }} />
-
-        {/* Scanning Overlay */}
-        <Box sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '80%',
-          height: '80%',
-          border: '2px solid rgba(0, 207, 255, 0.5)',
-          borderRadius: 2,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          pointerEvents: 'none'
-        }}>
-          <CenterFocusStrongIcon 
-            sx={{ 
-              fontSize: 48,
-              color: 'rgba(0, 207, 255, 0.8)',
-              animation: 'pulse 2s infinite'
-            }} 
-          />
-        </Box>
 
         {/* Camera Controls */}
         <Box sx={{
           position: 'absolute',
-          bottom: 16,
-          left: 0,
-          right: 0,
+          bottom: 20,
+          left: '50%',
+          transform: 'translateX(-50%)',
           display: 'flex',
-          justifyContent: 'center',
-          gap: 2
+          gap: 2,
+          p: 2,
+          borderRadius: 5,
+          bgcolor: 'rgba(0,0,0,0.7)',
+          backdropFilter: 'blur(10px)'
         }}>
-          <IconButton 
-            sx={{ 
-              bgcolor: 'rgba(0, 0, 0, 0.5)',
-              color: '#fff',
-              '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.7)' }
-            }}
-          >
-            <FlipCameraAndroidIcon />
-          </IconButton>
-          <IconButton 
-            sx={{ 
-              bgcolor: 'rgba(0, 0, 0, 0.5)',
-              color: '#fff',
-              '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.7)' }
-            }}
-          >
-            <CameraAltIcon />
-          </IconButton>
+          {/* Flip Camera Button - Switches between front/back cameras */}
+          <Tooltip title="Switch Camera">
+            <IconButton 
+              onClick={() => setFacingMode(prev => prev === 'user' ? 'environment' : 'user')}
+              sx={{ color: '#00CFFF' }}
+            >
+              <FlipCameraAndroidIcon />
+            </IconButton>
+          </Tooltip>
+
+          {/* Capture Button - Takes a snapshot for analysis */}
+          <Tooltip title="Analyze Warning Light">
+            <IconButton 
+              sx={{ 
+                color: '#00CFFF',
+                border: '2px solid #00CFFF',
+                '&:hover': {
+                  bgcolor: 'rgba(0,207,255,0.1)'
+                }
+              }}
+            >
+              <CameraAltIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
 
-        {/* Loading Overlay */}
+        {/* Loading State */}
         {isLoading && (
           <Box sx={{
             position: 'absolute',
@@ -312,97 +281,39 @@ const Scanner = ({ onDetection = () => {} }) => {
             left: 0,
             right: 0,
             bottom: 0,
-            bgcolor: 'rgba(0, 0, 0, 0.7)',
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 2
+            bgcolor: 'rgba(0,0,0,0.7)'
           }}>
             <CircularProgress sx={{ color: '#00CFFF' }} />
-            <Typography color="white">
-              Initializing camera...
-            </Typography>
           </Box>
         )}
 
-        {/* Error Display */}
+        {/* Error Message */}
         {error && (
           <Box sx={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            bgcolor: 'rgba(0, 0, 0, 0.7)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            textAlign: 'center',
+            color: '#fff',
             p: 3
           }}>
-            <Typography color="error" align="center">
-              {error}
-            </Typography>
+            <Typography color="error">{error}</Typography>
+            <Button 
+              onClick={initCamera}
+              variant="outlined" 
+              sx={{ mt: 2, color: '#00CFFF' }}
+            >
+              Retry
+            </Button>
           </Box>
         )}
       </Paper>
-
-      {/* Warning Details Panel */}
-      {detectedWarning && (
-        <Paper sx={{ 
-          p: 2,
-          bgcolor: detectedWarning.category === 'Red' 
-            ? 'rgba(255, 0, 0, 0.1)' 
-            : 'rgba(255, 165, 0, 0.1)',
-          borderRadius: 2,
-          border: `1px solid ${detectedWarning.category === 'Red' ? '#ff0000' : '#ffa500'}`
-        }}>
-          <Typography variant="h6" sx={{ 
-            color: detectedWarning.category === 'Red' ? '#ff0000' : '#ffa500',
-            mb: 1 
-          }}>
-            {detectedWarning.name}
-          </Typography>
-          
-          <Typography variant="body2" sx={{ color: '#fff', mb: 2 }}>
-            Match Confidence: {(detectedWarning.confidence * 100).toFixed(0)}%
-          </Typography>
-
-          <Typography variant="subtitle2" sx={{ color: '#00CFFF', mb: 0.5 }}>
-            Description:
-          </Typography>
-          <Typography variant="body2" sx={{ color: '#fff', mb: 1.5 }}>
-            {detectedWarning.description}
-          </Typography>
-
-          <Typography variant="subtitle2" sx={{ color: '#00CFFF', mb: 0.5 }}>
-            Cause:
-          </Typography>
-          <Typography variant="body2" sx={{ color: '#fff', mb: 1.5 }}>
-            {detectedWarning.cause}
-          </Typography>
-
-          <Typography variant="subtitle2" sx={{ color: '#00CFFF', mb: 0.5 }}>
-            Solution:
-          </Typography>
-          <Typography variant="body2" sx={{ color: '#fff' }}>
-            {detectedWarning.solution}
-          </Typography>
-        </Paper>
-      )}
-
-      {/* Animation Styles */}
-      <style>
-        {`
-          @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 0.5; }
-          }
-        `}
-      </style>
     </Box>
   );
 };
 
-export default Scanner; 
+export default memo(Scanner); 
