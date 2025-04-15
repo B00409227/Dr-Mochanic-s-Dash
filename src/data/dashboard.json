@@ -1,0 +1,870 @@
+{
+    "light_001": {
+        "name": "Brake System Warning",
+        "category": "Red",
+        "description": "Indicates a serious issue with the braking system, such as failure or very low brake fluid.",
+        "cause": "Worn brake pads, low brake fluid level, or a brake system malfunction.",
+        "solution": "Stop the vehicle immediately. Check the brake fluid and call for roadside assistance or a mechanic."
+    },
+    "light_002": {
+        "name": "Engine Overheating",
+        "category": "Red",
+        "description": "The engine temperature is too high and may cause severe damage.",
+        "cause": "Low coolant level, failed thermostat, radiator blockage, or water pump failure.",
+        "solution": "Stop the vehicle, allow the engine to cool, check coolant level. Seek mechanical help if the issue persists."
+    },
+    "light_003": {
+        "name": "Oil Pressure Low",
+        "category": "Red",
+        "description": "Engine oil pressure has dropped below a safe level.",
+        "cause": "Low oil level, oil pump failure, or blocked oil passages.",
+        "solution": "Turn off the engine immediately. Check oil level and refill if needed. If the light remains, contact a mechanic."
+    },
+    "light_004": {
+        "name": "Battery Charging Issue",
+        "category": "Red",
+        "description": "The vehicle\u2019s battery is not charging correctly.",
+        "cause": "Faulty alternator, worn battery, broken drive belt, or poor electrical connections.",
+        "solution": "Avoid turning off the engine. Drive to a service center or call breakdown services."
+    },
+    "light_005": {
+        "name": "Airbag System Fault",
+        "category": "Red",
+        "description": "Indicates a problem with the airbag or supplemental restraint system.",
+        "cause": "Sensor fault, disconnected cable, or airbag module issue.",
+        "solution": "Have the airbag system inspected by a qualified technician immediately."
+    },
+    "light_006": {
+        "name": "Seatbelt Reminder",
+        "category": "Red",
+        "description": "One or more occupants have not fastened their seatbelt.",
+        "cause": "Seatbelt not buckled or sensor malfunction.",
+        "solution": "Ensure all seatbelts are securely fastened."
+    },
+    "light_007": {
+        "name": "Bonnet Open",
+        "category": "Red",
+        "description": "The bonnet is not securely closed.",
+        "cause": "Improper bonnet closure or faulty latch sensor.",
+        "solution": "Safely pull over and close the bonnet securely."
+    },
+    "light_008": {
+        "name": "Boot Open",
+        "category": "Red",
+        "description": "The boot or tailgate is not properly closed.",
+        "cause": "Boot lid not latched or faulty sensor.",
+        "solution": "Stop the vehicle and properly close the boot."
+    },
+    "light_009": {
+        "name": "Door Open",
+        "category": "Red",
+        "description": "One or more doors are not securely closed.",
+        "cause": "Unlatched door or defective door sensor.",
+        "solution": "Stop the car and ensure all doors are closed tightly."
+    },
+    "light_010": {
+        "name": "Power Steering Failure",
+        "category": "Red",
+        "description": "Power steering system is not functioning correctly.",
+        "cause": "Loss of hydraulic fluid, electrical fault, or pump failure.",
+        "solution": "Avoid driving. Have the power steering system inspected immediately."
+    },
+    "light_011": {
+        "name": "Transmission Fault",
+        "category": "Red",
+        "description": "There is a fault in the automatic transmission system.",
+        "cause": "Low transmission fluid, overheating, or internal damage.",
+        "solution": "Drive cautiously to a garage or call for recovery. Have the transmission inspected."
+    },
+    "light_012": {
+        "name": "Coolant Level Critically Low",
+        "category": "Red",
+        "description": "Coolant level is dangerously low and can cause overheating.",
+        "cause": "Coolant leak, damaged radiator, or cracked reservoir.",
+        "solution": "Stop the vehicle and allow engine to cool. Refill coolant and seek inspection for leaks."
+    },
+    "light_013": {
+        "name": "Parking Brake Engaged",
+        "category": "Red",
+        "description": "Parking brake is applied or hasn\u2019t been fully released.",
+        "cause": "Manual or electronic parking brake engaged.",
+        "solution": "Release the parking brake before driving."
+    },
+    "light_014": {
+        "name": "SRS (Supplemental Restraint System) Fault",
+        "category": "Red",
+        "description": "SRS system fault may prevent airbags or seatbelt tensioners from working correctly.",
+        "cause": "Wiring issues, damaged sensor, or SRS module failure.",
+        "solution": "Have the SRS system inspected by a technician."
+    },
+    "light_015": {
+        "name": "Brake Fluid Low",
+        "category": "Red",
+        "description": "The brake fluid level is too low.",
+        "cause": "Brake fluid leak or worn brake pads causing fluid displacement.",
+        "solution": "Check and top up brake fluid. Seek immediate repair if leak is suspected."
+    },
+    "light_016": {
+        "name": "Engine Management (Severe Fault)",
+        "category": "Red",
+        "description": "A critical fault has been detected in the engine control system.",
+        "cause": "Engine sensor failure, misfire, or emission system issue.",
+        "solution": "Do not continue driving. Call for assistance or diagnostic check immediately."
+    },
+    "light_017": {
+        "name": "Electric Parking Brake Failure",
+        "category": "Red",
+        "description": "The electronic parking brake is not working correctly.",
+        "cause": "Electronic control fault, damaged switch, or wiring issue.",
+        "solution": "Avoid parking on slopes. Get system checked by a mechanic immediately."
+    },
+    "light_018": {
+        "name": "High Transmission Oil Temperature",
+        "category": "Red",
+        "description": "Transmission oil is overheating, risking gearbox damage.",
+        "cause": "Heavy towing, low transmission fluid, or blocked cooler.",
+        "solution": "Stop and allow the transmission to cool. Check fluid levels and consult a garage."
+    },
+    "light_019": {
+        "name": "AdBlue Empty (Diesel only)",
+        "category": "Red",
+        "description": "The AdBlue tank is empty or critically low.",
+        "cause": "High consumption or failure to refill.",
+        "solution": "Refill AdBlue as soon as possible or the vehicle may not restart."
+    },
+    "light_020": {
+        "name": "Steering Lock Malfunction",
+        "category": "Red",
+        "description": "The steering lock may not disengage.",
+        "cause": "Faulty ignition switch, software error, or sensor issue.",
+        "solution": "Try restarting the car. If it persists, seek professional assistance."
+    },
+    "light_021": {
+        "name": "Crash Detection / Collision Alert (Red variant)",
+        "category": "Red",
+        "description": "Severe collision warning or crash detection alert.",
+        "cause": "Proximity sensors, camera data, or actual crash detected.",
+        "solution": "Check for collision damage. Call emergency services if needed."
+    },
+    "light_022": {
+        "name": "EV Battery Overheating",
+        "category": "Red",
+        "description": "Electric vehicle battery is overheating.",
+        "cause": "High load, thermal management system failure, or faulty battery.",
+        "solution": "Stop vehicle. Allow battery to cool. Seek service inspection."
+    },
+    "light_023": {
+        "name": "High Voltage System Fault (EV)",
+        "category": "Red",
+        "description": "Critical fault in EV high-voltage electrical system.",
+        "cause": "Short circuit, component failure, or controller malfunction.",
+        "solution": "Do not touch electrical components. Contact EV service center immediately."
+    },
+    "light_024": {
+        "name": "Check Engine Light (Minor Fault)",
+        "category": "Amber",
+        "description": "Indicates a non-urgent fault in the engine management system.",
+        "cause": "Loose fuel cap, faulty sensor, or minor emissions issue.",
+        "solution": "Drive with caution. Get a diagnostic check soon to avoid further issues."
+    },
+    "light_025": {
+        "name": "ABS (Anti-lock Braking System) Warning",
+        "category": "Amber",
+        "description": "The anti-lock braking system is not functioning properly.",
+        "cause": "Damaged wheel sensor, ABS module fault, or wiring issue.",
+        "solution": "Brakes will still work but without ABS. Get system checked promptly."
+    },
+    "light_026": {
+        "name": "Traction Control System (TCS) Warning",
+        "category": "Amber",
+        "description": "Indicates that the traction control system is malfunctioning or turned off.",
+        "cause": "Faulty wheel speed sensor, damaged wiring, or system deactivated.",
+        "solution": "Check if system was turned off manually. If not, have it diagnosed soon."
+    },
+    "light_027": {
+        "name": "Electronic Stability Control (ESC) Warning",
+        "category": "Amber",
+        "description": "Warns that the electronic stability control system is not working properly.",
+        "cause": "Sensor fault, software issue, or wheel slip detected.",
+        "solution": "Drive cautiously and have the ESC system inspected by a professional."
+    },
+    "light_028": {
+        "name": "ESC OFF Indicator",
+        "category": "Amber",
+        "description": "Indicates that the ESC system has been manually turned off.",
+        "cause": "Driver manually disabled stability control.",
+        "solution": "Turn ESC back on via dashboard or consult vehicle manual."
+    },
+    "light_029": {
+        "name": "Tyre Pressure Monitoring System (TPMS) Alert",
+        "category": "Amber",
+        "description": "One or more tyres may be under-inflated.",
+        "cause": "Low tyre pressure, puncture, or faulty TPMS sensor.",
+        "solution": "Check and adjust tyre pressures. Repair or replace tyres as needed."
+    },
+    "light_030": {
+        "name": "Glow Plug Warning (Diesel engines)",
+        "category": "Amber",
+        "description": "Indicates preheating of diesel engine or fault in glow plug system.",
+        "cause": "Glow plug failure, relay issue, or wiring fault.",
+        "solution": "Wait for the light to go out before starting. If it stays on, get it checked."
+    },
+    "light_031": {
+        "name": "Diesel Particulate Filter (DPF) Warning",
+        "category": "Amber",
+        "description": "Warns of a partially blocked DPF filter.",
+        "cause": "Short journeys preventing regeneration or excessive soot build-up.",
+        "solution": "Drive at ~40mph for 15 minutes to trigger DPF regeneration. If light remains, get service."
+    },
+    "light_032": {
+        "name": "Fuel Filter Water Contamination",
+        "category": "Amber",
+        "description": "Water has been detected in the diesel fuel filter.",
+        "cause": "Fuel contamination or full water separator.",
+        "solution": "Drain the water separator or have the filter replaced by a mechanic."
+    },
+    "light_033": {
+        "name": "Low Fuel Level",
+        "category": "Amber",
+        "description": "Fuel tank is nearing empty.",
+        "cause": "Normal fuel usage.",
+        "solution": "Refuel as soon as possible to avoid running out of fuel."
+    },
+    "light_034": {
+        "name": "Low Washer Fluid",
+        "category": "Amber",
+        "description": "Washer fluid reservoir is low or empty.",
+        "cause": "Normal usage or leak in washer fluid system.",
+        "solution": "Top up the washer fluid reservoir with suitable solution."
+    },
+    "light_035": {
+        "name": "Low Coolant Level",
+        "category": "Amber",
+        "description": "Engine coolant is below recommended level.",
+        "cause": "Coolant leak, worn radiator hose, or evaporation.",
+        "solution": "Allow engine to cool, then top up coolant. Check for leaks."
+    },
+    "light_036": {
+        "name": "Service Reminder / Inspection Due",
+        "category": "Amber",
+        "description": "Indicates a scheduled service or inspection is due.",
+        "cause": "Mileage/time-based service interval reached.",
+        "solution": "Book a vehicle service to maintain performance and warranty."
+    },
+    "light_037": {
+        "name": "Brake Pad Wear Indicator",
+        "category": "Amber",
+        "description": "Warns that the brake pads are worn and require replacement soon.",
+        "cause": "Normal wear or sensor wire damage.",
+        "solution": "Have brake pads checked and replaced if below recommended thickness."
+    },
+    "light_038": {
+        "name": "Hill Descent Control Fault",
+        "category": "Amber",
+        "description": "System fault in hill descent control feature.",
+        "cause": "Sensor issue, electrical fault, or software problem.",
+        "solution": "Avoid using the feature and have it inspected by a technician."
+    },
+    "light_039": {
+        "name": "Suspension System Warning",
+        "category": "Amber",
+        "description": "Indicates a problem with the vehicle's suspension system.",
+        "cause": "Air or adaptive suspension failure, sensor malfunction.",
+        "solution": "Drive with caution. Have the suspension system checked."
+    },
+    "light_040": {
+        "name": "Air Suspension Fault",
+        "category": "Amber",
+        "description": "There is an issue with the air suspension system.",
+        "cause": "Air leak, compressor failure, or control module fault.",
+        "solution": "Avoid rough roads. Get system inspected by a specialist."
+    },
+    "light_041": {
+        "name": "Lane Departure Warning",
+        "category": "Amber",
+        "description": "You are unintentionally drifting out of your lane.",
+        "cause": "No turn signal used or distracted driving.",
+        "solution": "Use indicators and stay alert. System is for assistance, not replacement of attention."
+    },
+    "light_042": {
+        "name": "Lane Keep Assist Fault",
+        "category": "Amber",
+        "description": "The lane keeping assist system is not functioning.",
+        "cause": "Camera obstruction, sensor fault, or software issue.",
+        "solution": "Clean sensors or windscreen. Have the system checked if issue continues."
+    },
+    "light_043": {
+        "name": "Blind Spot Monitoring Warning",
+        "category": "Amber",
+        "description": "Indicates a problem with the blind spot monitoring system.",
+        "cause": "Dirty sensor, blocked camera, or malfunction.",
+        "solution": "Clean sensor areas. Visit service center if light persists."
+    },
+    "light_044": {
+        "name": "Rain/Light Sensor Fault",
+        "category": "Amber",
+        "description": "Indicates an issue with automatic light or wiper sensor.",
+        "cause": "Dirty windscreen, faulty sensor, or software issue.",
+        "solution": "Clean windscreen. If problem continues, seek inspection."
+    },
+    "light_045": {
+        "name": "Speed Limiter Warning",
+        "category": "Amber",
+        "description": "The speed limiter system is not working correctly.",
+        "cause": "Sensor failure or deactivation.",
+        "solution": "Drive carefully and get the system checked by a mechanic."
+    },
+    "light_046": {
+        "name": "Auto Start/Stop System Warning",
+        "category": "Amber",
+        "description": "Start/Stop system is not functioning properly.",
+        "cause": "Low battery charge, engine temperature, or sensor fault.",
+        "solution": "Check battery health. System will re-enable when conditions are met."
+    },
+    "light_047": {
+        "name": "Adaptive Cruise Control Fault",
+        "category": "Amber",
+        "description": "Fault in the adaptive cruise control system.",
+        "cause": "Sensor obstruction, radar fault, or calibration issue.",
+        "solution": "Clean sensors. Get the system checked by a qualified technician."
+    },
+    "light_048": {
+        "name": "Lamp Defect / Exterior Light Failure",
+        "category": "Amber",
+        "description": "One or more external lights are not working.",
+        "cause": "Blown bulb, wiring issue, or socket corrosion.",
+        "solution": "Replace the bulb or consult a garage if issue persists."
+    },
+    "light_049": {
+        "name": "Headlight Height Adjustment Warning",
+        "category": "Amber",
+        "description": "Headlamp levelling system malfunction.",
+        "cause": "Sensor or motor fault.",
+        "solution": "Have the system inspected for correct operation and visibility."
+    },
+    "light_050": {
+        "name": "Fuel System Warning",
+        "category": "Amber",
+        "description": "Problem detected in the fuel supply system.",
+        "cause": "Fuel pump fault, leak, or fuel pressure issue.",
+        "solution": "Do not continue driving if performance is affected. Seek mechanical help."
+    },
+    "light_051": {
+        "name": "Emissions Control Fault",
+        "category": "Amber",
+        "description": "There is a problem with the vehicle's emissions control system.",
+        "cause": "Faulty oxygen sensor, catalytic converter, or EGR valve.",
+        "solution": "Have the emissions system diagnosed and repaired to avoid MOT failure or engine issues."
+    },
+    "light_052": {
+        "name": "Slippery Road Warning",
+        "category": "Amber",
+        "description": "Indicates that road conditions are slippery.",
+        "cause": "Detected wheel slip or icy road conditions.",
+        "solution": "Reduce speed, avoid harsh acceleration, and drive cautiously."
+    },
+    "light_053": {
+        "name": "Cold Weather/Icy Road Alert",
+        "category": "Amber",
+        "description": "Ambient temperature is near or below freezing.",
+        "cause": "Temperature below 3\u00b0C.",
+        "solution": "Be cautious, particularly on untreated roads."
+    },
+    "light_054": {
+        "name": "Start/Stop Unavailable",
+        "category": "Amber",
+        "description": "The engine Start/Stop system is temporarily disabled.",
+        "cause": "Battery charge too low, engine too cold, or other system limits.",
+        "solution": "System will reactivate automatically when conditions are met."
+    },
+    "light_055": {
+        "name": "Brake Light Bulb Fault",
+        "category": "Amber",
+        "description": "One or more brake light bulbs are not functioning.",
+        "cause": "Blown bulb, damaged socket, or wiring fault.",
+        "solution": "Replace faulty bulbs and check connections."
+    },
+    "light_056": {
+        "name": "Parking Sensor Fault",
+        "category": "Amber",
+        "description": "Problem detected with the parking sensor system.",
+        "cause": "Sensor obstruction, electrical fault, or water ingress.",
+        "solution": "Clean sensors. If the fault remains, have system inspected."
+    },
+    "light_057": {
+        "name": "Adaptive Headlight Malfunction",
+        "category": "Amber",
+        "description": "The adaptive headlight system is not operating correctly.",
+        "cause": "Sensor or motor fault, software error.",
+        "solution": "Have the adaptive headlight system checked at a dealership."
+    },
+    "light_058": {
+        "name": "Traffic Sign Recognition Fault",
+        "category": "Amber",
+        "description": "System cannot detect or interpret traffic signs properly.",
+        "cause": "Dirty camera, bad lighting, or software issue.",
+        "solution": "Clean the windscreen area in front of the camera and restart the car."
+    },
+    "light_059": {
+        "name": "Rear Cross Traffic Alert",
+        "category": "Amber",
+        "description": "A vehicle is approaching from the side while reversing.",
+        "cause": "Detected vehicle or obstacle using radar.",
+        "solution": "Stop reversing and check surroundings carefully."
+    },
+    "light_060": {
+        "name": "Night Vision System Fault",
+        "category": "Amber",
+        "description": "There is an issue with the night vision assistance system.",
+        "cause": "Sensor or camera fault, software error.",
+        "solution": "Have the night vision system inspected by a specialist."
+    },
+    "light_061": {
+        "name": "Automatic Parking Assist Fault",
+        "category": "Amber",
+        "description": "Auto parking feature has malfunctioned.",
+        "cause": "Camera/sensor fault, dirty sensor, or system error.",
+        "solution": "Clean the sensors. Visit a service center if the warning persists."
+    },
+    "light_062": {
+        "name": "Convertible Roof System Fault",
+        "category": "Amber",
+        "description": "Problem with convertible roof mechanism.",
+        "cause": "Hydraulic failure, latch problem, or electric motor issue.",
+        "solution": "Do not operate roof. Have the system checked by a qualified technician."
+    },
+    "light_063": {
+        "name": "Key Not Detected",
+        "category": "Amber",
+        "description": "The car cannot detect the electronic key.",
+        "cause": "Key fob out of range, battery low, or interference.",
+        "solution": "Ensure key is inside the vehicle and battery is charged."
+    },
+    "light_064": {
+        "name": "Key Fob Battery Low",
+        "category": "Amber",
+        "description": "The battery in the key fob is low.",
+        "cause": "Battery depletion from use or age.",
+        "solution": "Replace the key fob battery as soon as possible."
+    },
+    "light_065": {
+        "name": "Electric Motor Warning (Hybrid/EV)",
+        "category": "Amber",
+        "description": "An issue has been detected with the electric motor.",
+        "cause": "Motor overheating, control fault, or wiring issue.",
+        "solution": "Drive carefully and visit a service center for diagnosis."
+    },
+    "light_066": {
+        "name": "Hybrid System Fault",
+        "category": "Amber",
+        "description": "A fault in the hybrid drive system has occurred.",
+        "cause": "Battery management, inverter, or sensor issues.",
+        "solution": "Seek immediate diagnostic service at a hybrid specialist."
+    },
+    "light_067": {
+        "name": "Regenerative Braking System Fault",
+        "category": "Amber",
+        "description": "Problem with regenerative braking system.",
+        "cause": "Battery issue, motor fault, or system controller malfunction.",
+        "solution": "Conventional brakes will still work. Get the system checked."
+    },
+    "light_068": {
+        "name": "EV Charging System Fault",
+        "category": "Amber",
+        "description": "EV charging system is not working properly.",
+        "cause": "Charger cable fault, battery issue, or software error.",
+        "solution": "Try another charger. If fault remains, contact EV service."
+    },
+    "light_069": {
+        "name": "Limited Power Mode / Tortoise Symbol",
+        "category": "Amber",
+        "description": "Vehicle is in reduced performance mode.",
+        "cause": "Detected system fault, overheating, or battery protection.",
+        "solution": "Drive to a service center carefully. Avoid high speed or load."
+    },
+    "light_070": {
+        "name": "EV Maintenance Required",
+        "category": "Amber",
+        "description": "Indicates that scheduled EV maintenance is due.",
+        "cause": "Mileage or time-based service schedule reached.",
+        "solution": "Book service at an authorized EV service provider."
+    },
+    "light_071": {
+        "name": "Electronic Throttle Control Fault",
+        "category": "Amber",
+        "description": "Issue detected with electronic throttle system.",
+        "cause": "Throttle body malfunction, sensor issue, or wiring fault.",
+        "solution": "Drive cautiously. Have system checked if light remains on."
+    },
+    "light_072": {
+        "name": "Electronic Power Control (EPC)",
+        "category": "Amber",
+        "description": "Fault in engine electronics or power control system.",
+        "cause": "Throttle, ignition, or fuel injection problem.",
+        "solution": "Seek diagnostic help. Reduced performance likely."
+    },
+    "light_073": {
+        "name": "Trailer Stability Assist Active",
+        "category": "Amber",
+        "description": "System is actively stabilizing a trailer.",
+        "cause": "Detected sway or loss of trailer alignment.",
+        "solution": "Slow down and check trailer connection. Avoid abrupt steering."
+    },
+    "light_074": {
+        "name": "Hill Start Assist Fault",
+        "category": "Amber",
+        "description": "Fault with the hill start assist system.",
+        "cause": "Brake sensor or clutch position sensor issue.",
+        "solution": "Use manual braking if needed and visit a mechanic."
+    },
+    "light_075": {
+        "name": "Dashcam Recording / Error",
+        "category": "Amber",
+        "description": "Dashcam is actively recording or there is a recording error.",
+        "cause": "Memory full, SD card issue, or power supply problem.",
+        "solution": "Check dashcam settings, memory card, and power connection."
+    },
+    "light_076": {
+        "name": "Headlights On",
+        "category": "Informational",
+        "description": "Indicates that the vehicle's headlights are turned on.",
+        "cause": "Manual activation or automatic system turned on due to low light.",
+        "solution": "No action needed unless driving in daylight. Turn off to conserve battery."
+    },
+    "light_077": {
+        "name": "High Beam Active",
+        "category": "Informational",
+        "description": "High beam headlights are active.",
+        "cause": "Manual activation by driver.",
+        "solution": "Use responsibly to avoid dazzling oncoming drivers."
+    },
+    "light_078": {
+        "name": "Front Fog Lights On",
+        "category": "Informational",
+        "description": "Front fog lights are switched on.",
+        "cause": "Manual activation in poor visibility conditions.",
+        "solution": "Turn off when visibility improves to avoid dazzling others."
+    },
+    "light_079": {
+        "name": "Rear Fog Lights On",
+        "category": "Informational",
+        "description": "Rear fog lights are switched on.",
+        "cause": "Manual activation.",
+        "solution": "Use only in foggy or low-visibility situations."
+    },
+    "light_080": {
+        "name": "Cruise Control Active",
+        "category": "Informational",
+        "description": "Indicates that cruise control is currently engaged.",
+        "cause": "Cruise control system turned on and maintaining speed.",
+        "solution": "Deactivate or adjust speed using the control stalk/buttons as needed."
+    },
+    "light_081": {
+        "name": "Speed Limiter Active",
+        "category": "Informational",
+        "description": "Speed limiter is active, restricting top speed.",
+        "cause": "Manual activation by the driver.",
+        "solution": "Adjust or deactivate using the control stalk or menu."
+    },
+    "light_082": {
+        "name": "Daytime Running Lights (DRL)",
+        "category": "Informational",
+        "description": "Daytime running lights are on for increased visibility.",
+        "cause": "Automatic system active during daylight hours.",
+        "solution": "No action needed. DRLs enhance vehicle visibility."
+    },
+    "light_083": {
+        "name": "Automatic Headlights Active",
+        "category": "Informational",
+        "description": "Headlights are being automatically controlled.",
+        "cause": "Auto-sensing lighting system activated.",
+        "solution": "No action required unless manual override is preferred."
+    },
+    "light_084": {
+        "name": "Auto Hold Active",
+        "category": "Informational",
+        "description": "Auto Hold function is engaged, holding the brake when stationary.",
+        "cause": "Brake is automatically held when vehicle is stopped.",
+        "solution": "Accelerate to release the hold or deactivate the system if not needed."
+    },
+    "light_085": {
+        "name": "Rain Sensor Active",
+        "category": "Informational",
+        "description": "Rain sensor system is managing wiper speed.",
+        "cause": "Rain detected on windscreen.",
+        "solution": "No action needed. Ensure the sensor area is clean."
+    },
+    "light_086": {
+        "name": "Auto Start/Stop Active",
+        "category": "Informational",
+        "description": "Engine has stopped automatically to conserve fuel.",
+        "cause": "Start/Stop conditions met during a stop (e.g., at traffic lights).",
+        "solution": "System will restart engine automatically when required."
+    },
+    "light_087": {
+        "name": "Windscreen Defrost Active",
+        "category": "Informational",
+        "description": "Heated windscreen is operating to remove condensation or frost.",
+        "cause": "Manual or automatic activation due to detected condensation.",
+        "solution": "No action needed. Turn off manually if not required."
+    },
+    "light_088": {
+        "name": "Rear Window Defrost Active",
+        "category": "Informational",
+        "description": "Rear window defroster is currently active.",
+        "cause": "Manual or automatic activation to clear mist or frost.",
+        "solution": "Turn off when the window is clear to save battery power."
+    },
+    "light_089": {
+        "name": "Indicator (Left/Right Blinkers)",
+        "category": "Informational",
+        "description": "A turn signal (indicator) is currently active.",
+        "cause": "Driver activated indicator for turning or lane change.",
+        "solution": "Automatically cancels or turn off manually after the maneuver."
+    },
+    "light_090": {
+        "name": "Eco Mode Active",
+        "category": "Informational",
+        "description": "The vehicle is operating in fuel-saving Eco mode.",
+        "cause": "Manual activation or automatic drive mode selection.",
+        "solution": "No action needed unless switching to another mode."
+    },
+    "light_091": {
+        "name": "Comfort/Sport Mode Selected",
+        "category": "Informational",
+        "description": "The vehicle is in Comfort or Sport drive mode.",
+        "cause": "Manual selection by the driver via drive mode settings.",
+        "solution": "Switch drive modes according to driving preference."
+    },
+    "light_092": {
+        "name": "Adaptive Headlights Active",
+        "category": "Informational",
+        "description": "Headlights are adjusting direction based on steering and speed.",
+        "cause": "System active during turns or driving at night.",
+        "solution": "No action needed. Adaptive lights improve road visibility."
+    },
+    "light_093": {
+        "name": "EV Ready to Drive Indicator",
+        "category": "Informational",
+        "description": "Indicates that an electric vehicle is powered on and ready to move.",
+        "cause": "EV systems are active and operational.",
+        "solution": "Ready to drive. No action required."
+    },
+    "light_094": {
+        "name": "EV Charging in Progress",
+        "category": "Informational",
+        "description": "The EV is currently charging.",
+        "cause": "Connected to a charging station or plug.",
+        "solution": "No action needed. Disconnect once charging is complete."
+    },
+    "light_095": {
+        "name": "Hybrid Mode Active",
+        "category": "Informational",
+        "description": "Vehicle is currently operating in hybrid drive mode.",
+        "cause": "Automatic system switching between petrol and electric motors.",
+        "solution": "No action needed. System will manage power source switching."
+    },
+    "light_096": {
+        "name": "Regenerative Braking Active",
+        "category": "Informational",
+        "description": "Braking energy is being recovered and stored.",
+        "cause": "Vehicle is decelerating using regenerative braking.",
+        "solution": "No action needed. Helps recharge EV battery."
+    },
+    "light_097": {
+        "name": "HUD (Head-Up Display) Active",
+        "category": "Informational",
+        "description": "The vehicle's head-up display is operational.",
+        "cause": "Manual or automatic activation.",
+        "solution": "No action needed unless display is distracting."
+    },
+    "light_098": {
+        "name": "GPS Signal Indicator",
+        "category": "Informational",
+        "description": "Shows GPS signal strength or connection status.",
+        "cause": "Navigation system initializing or losing signal.",
+        "solution": "Ensure GPS visibility to the sky. Move vehicle if needed."
+    },
+    "light_099": {
+        "name": "Radar Sensor Active",
+        "category": "Informational",
+        "description": "Radar-based system (e.g., collision or adaptive cruise) is active.",
+        "cause": "Automatic activation when driving.",
+        "solution": "No action required unless system is malfunctioning."
+    },
+    "light_100": {
+        "name": "Traffic Sign Recognition Active",
+        "category": "Informational",
+        "description": "The vehicle is actively reading and displaying traffic signs.",
+        "cause": "System is monitoring road signs using cameras.",
+        "solution": "No action needed. Follow the displayed limits for safety."
+    },
+    "light_101": {
+        "name": "Lane Assist Active",
+        "category": "Informational",
+        "description": "The lane assist system is currently active and monitoring lane position.",
+        "cause": "System engaged during driving.",
+        "solution": "No action needed. Always maintain control and stay aware."
+    },
+    "light_102": {
+        "name": "Parking Assist Active",
+        "category": "Informational",
+        "description": "Indicates that parking assist system is currently operating.",
+        "cause": "Driver initiated parking assist.",
+        "solution": "Follow system prompts and monitor surroundings."
+    },
+    "light_103": {
+        "name": "Driver Attention Alert Active",
+        "category": "Informational",
+        "description": "System is monitoring driver behavior for signs of fatigue.",
+        "cause": "Long drive without breaks, inconsistent steering.",
+        "solution": "Consider taking a break if prompted by the system."
+    },
+    "light_104": {
+        "name": "Blind Spot Monitor Active",
+        "category": "Informational",
+        "description": "Blind spot detection is active and monitoring adjacent lanes.",
+        "cause": "System detecting traffic beside the vehicle.",
+        "solution": "Always check mirrors manually in addition to system alerts."
+    },
+    "light_105": {
+        "name": "Collision Warning System Active",
+        "category": "Informational",
+        "description": "Forward collision warning system is monitoring surroundings.",
+        "cause": "Active safety system monitoring distance to vehicles ahead.",
+        "solution": "Be prepared to brake if the system signals danger."
+    },
+    "light_106": {
+        "name": "Speed Camera Detection Alert",
+        "category": "Informational",
+        "description": "Speed camera or zone detected by the vehicle.",
+        "cause": "Navigation or onboard detection systems.",
+        "solution": "Adjust speed accordingly and obey road signs."
+    },
+    "light_107": {
+        "name": "Smartphone Connected / Android Auto / Apple CarPlay",
+        "category": "Informational",
+        "description": "Smartphone is connected via Android Auto or Apple CarPlay.",
+        "cause": "Phone connected via USB or Bluetooth.",
+        "solution": "Use infotainment system safely while driving."
+    },
+    "light_108": {
+        "name": "Key Detected",
+        "category": "Informational",
+        "description": "Key fob is within vehicle range.",
+        "cause": "Smart key system confirms presence of key.",
+        "solution": "No action needed unless warning changes."
+    },
+    "light_109": {
+        "name": "Vehicle Online / OTA Updates Available",
+        "category": "Informational",
+        "description": "Vehicle is connected to a network or update is ready.",
+        "cause": "Online features active or system update queued.",
+        "solution": "Download and install update if prompted and safe."
+    },
+    "light_110": {
+        "name": "Seat Occupancy Sensor Active",
+        "category": "Informational",
+        "description": "System detects a passenger in seat without a seatbelt.",
+        "cause": "Unfastened seatbelt or child seat detected.",
+        "solution": "Ensure passengers are buckled properly."
+    },
+    "light_111": {
+        "name": "Start/Stop System Charging Battery",
+        "category": "Informational",
+        "description": "Engine is running to recharge battery before enabling start/stop.",
+        "cause": "Low battery charge detected.",
+        "solution": "System will resume automatically once battery is charged."
+    },
+    "light_112": {
+        "name": "Vehicle Restart Reminder",
+        "category": "Informational",
+        "description": "Reminder to restart the vehicle after a temporary stop.",
+        "cause": "Manual or automatic stop/start event.",
+        "solution": "Restart the vehicle to continue driving."
+    },
+    "light_113": {
+        "name": "Convertible Roof Operation",
+        "category": "Miscellaneous",
+        "description": "Convertible roof is in operation.",
+        "cause": "Driver is opening or closing the roof.",
+        "solution": "Ensure the vehicle is stationary during roof operation."
+    },
+    "light_114": {
+        "name": "Roof Locking Mechanism Fault",
+        "category": "Miscellaneous",
+        "description": "Convertible roof locking system has malfunctioned.",
+        "cause": "Latch issue or hydraulic/electrical fault.",
+        "solution": "Do not drive at high speed. Visit a specialist immediately."
+    },
+    "light_115": {
+        "name": "Snow Chains Required",
+        "category": "Miscellaneous",
+        "description": "Snow chains are recommended due to road conditions.",
+        "cause": "Detected icy/snowy conditions via sensors or GPS.",
+        "solution": "Use snow chains where legally required and drive cautiously."
+    },
+    "light_116": {
+        "name": "Spare Wheel Installed Warning",
+        "category": "Miscellaneous",
+        "description": "Temporary spare wheel in use may limit vehicle functions.",
+        "cause": "Spare fitted after flat tyre.",
+        "solution": "Drive moderately and replace with standard tyre ASAP."
+    },
+    "light_117": {
+        "name": "Power Tailgate Operation Fault",
+        "category": "Miscellaneous",
+        "description": "The automatic tailgate system is not functioning correctly.",
+        "cause": "Obstruction, electrical fault, or hydraulic issue.",
+        "solution": "Use manual opening or contact service center."
+    },
+    "light_118": {
+        "name": "Fuel Cap Open or Loose",
+        "category": "Miscellaneous",
+        "description": "Fuel cap is missing, loose, or not sealed properly.",
+        "cause": "Cap not replaced correctly after refueling.",
+        "solution": "Stop vehicle and secure fuel cap. Reset system if needed."
+    },
+    "light_119": {
+        "name": "Bonnet Not Secured",
+        "category": "Miscellaneous",
+        "description": "The bonnet is not latched properly.",
+        "cause": "Incomplete bonnet closure or latch sensor fault.",
+        "solution": "Stop and close bonnet securely to avoid risk while driving."
+    },
+    "light_120": {
+        "name": "Vehicle Lift Mode (Air Suspension)",
+        "category": "Miscellaneous",
+        "description": "Air suspension system is raising the vehicle.",
+        "cause": "Manual lift selected or automatic adjustment.",
+        "solution": "Avoid high speeds in raised mode unless off-road."
+    },
+    "light_121": {
+        "name": "Tow Mode Active",
+        "category": "Miscellaneous",
+        "description": "Vehicle is in towing mode for optimal trailer handling.",
+        "cause": "Manual or automatic detection of trailer.",
+        "solution": "Ensure correct trailer connection and drive with care."
+    },
+    "light_122": {
+        "name": "Autonomous Driving Mode Active (e.g. Tesla Autopilot)",
+        "category": "Miscellaneous",
+        "description": "Autonomous features are currently active.",
+        "cause": "Self-driving mode or pilot assist activated.",
+        "solution": "Remain attentive and ready to take control at all times."
+    },
+    "light_123": {
+        "name": "System Software Update Required",
+        "category": "Miscellaneous",
+        "description": "A vehicle software update is available or required.",
+        "cause": "Outdated software or manufacturer push notification.",
+        "solution": "Schedule update at dealer or perform via OTA if available."
+    },
+    "light_124": {
+        "name": "EV Cabin Pre-conditioning Active",
+        "category": "Miscellaneous",
+        "description": "Cabin climate control system is pre-conditioning interior.",
+        "cause": "Scheduled pre-conditioning activated for comfort.",
+        "solution": "No action required. Cabin will be ready when you enter."
+    }
+}
