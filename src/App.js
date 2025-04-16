@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import theme from './theme/theme';
+import theme from './Theme/theme';
 import LandingPage from './pages/LandingPage';
 import CameraPage from './pages/CameraPage';
 
