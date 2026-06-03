@@ -1,6 +1,4 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
   "rewrites": [
     {
       "source": "/api/dvla/:path*",
