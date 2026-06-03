@@ -1,32 +1,75 @@
 'use client'
 export const dynamic = 'force-dynamic'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import { useAuthState, logout } from '@/lib/auth'
 import { getMapsKey, saveMapsKey, clearAllData } from '@/lib/storage'
 import toast from 'react-hot-toast'
 
 export default function SettingsPage() {
-  const [mapsKey, setMapsKey] = useState('')
+  const router = useRouter()
+  const { user } = useAuthState()
+  const [mapsKey, setMapsKey] = useState(() => typeof window !== 'undefined' ? getMapsKey() : '')
   const [showMaps, setShowMaps] = useState(false)
 
-  useEffect(() => {
-    setMapsKey(getMapsKey())
-  }, [])
+  async function handleLogout() {
+    if (!window.confirm("Sign out of Dr Mochanic's Dash?")) return
+    await logout()
+    router.replace('/login')
+  }
 
   function handleSaveMaps() {
     saveMapsKey(mapsKey.trim())
-    toast.success('Maps API key saved')
+    toast.success('Maps key saved')
   }
 
-  function handleClearAll() {
-    if (!window.confirm('Delete ALL app data? This cannot be undone.')) return
+  function handleClearData() {
+    if (!window.confirm('Delete all local app data? This cannot be undone.')) return
     clearAllData()
-    setMapsKey('')
-    toast.success('All data cleared')
+    toast.success('Local data cleared')
   }
+
+  const signInMethod = user?.providerData?.[0]?.providerId || 'email'
+  const methodLabel = signInMethod.includes('google')
+    ? 'Google'
+    : signInMethod.includes('apple')
+    ? 'Apple'
+    : signInMethod.includes('facebook')
+    ? 'Facebook'
+    : signInMethod.includes('phone')
+    ? 'Phone'
+    : 'Email'
 
   return (
     <div className="px-4 py-6 max-w-2xl mx-auto space-y-5">
       <h1 className="font-orbitron text-xl" style={{ color: 'var(--text)' }}>Settings</h1>
+
+      {/* Profile */}
+      {user && (
+        <div className="card rounded-xl p-5 space-y-4">
+          <h2 className="font-rajdhani font-bold text-lg" style={{ color: 'var(--cyan)' }}>Your Profile</h2>
+          <div className="flex items-center gap-4">
+            {user.photoURL ? (
+              <Image src={user.photoURL} alt="Profile" width={56} height={56} className="rounded-full" />
+            ) : (
+              <div className="w-14 h-14 rounded-full flex items-center justify-center font-orbitron font-bold text-xl" style={{ background: 'var(--surface2)', color: 'var(--cyan)' }}>
+                {(user.displayName || user.email || '?')[0].toUpperCase()}
+              </div>
+            )}
+            <div>
+              <p className="font-rajdhani font-bold text-base" style={{ color: 'var(--text)' }}>{user.displayName || 'User'}</p>
+              <p className="text-sm" style={{ color: 'var(--muted)' }}>{user.email || user.phoneNumber}</p>
+              <span className="text-xs px-2 py-0.5 rounded font-bold mt-1 inline-block" style={{ background: 'rgba(0,220,240,0.1)', color: 'var(--cyan)' }}>
+                {methodLabel}
+              </span>
+            </div>
+          </div>
+          <button onClick={handleLogout} className="btn-outline w-full py-2.5 text-sm" style={{ border: '1px solid var(--border)', color: 'var(--muted)', borderRadius: '0.5rem', background: 'transparent', cursor: 'pointer' }}>
+            Sign Out
+          </button>
+        </div>
+      )}
 
       {/* AI Status */}
       <div className="card rounded-xl p-5 space-y-3">
@@ -42,13 +85,8 @@ export default function SettingsPage() {
 
       {/* Maps Key */}
       <div className="card rounded-xl p-5 space-y-3">
-        <h2 className="font-rajdhani font-bold text-lg" style={{ color: 'var(--cyan)' }}>Google Maps API Key</h2>
-        <p className="text-sm" style={{ color: 'var(--muted)' }}>
-          Optional — enables the nearby garage finder map. Get a free key from{' '}
-          <a href="https://console.cloud.google.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cyan)' }}>
-            console.cloud.google.com
-          </a>
-        </p>
+        <h2 className="font-rajdhani font-bold text-lg" style={{ color: 'var(--cyan)' }}>Google Maps Key</h2>
+        <p className="text-sm" style={{ color: 'var(--muted)' }}>Optional — enables nearby garage map.</p>
         <div className="flex gap-2">
           <input
             type={showMaps ? 'text' : 'password'}
@@ -61,50 +99,36 @@ export default function SettingsPage() {
           <button
             onClick={() => setShowMaps(!showMaps)}
             className="px-3 py-2 rounded-lg text-sm"
-            style={{ background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--muted)' }}
+            style={{ background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--muted)', cursor: 'pointer' }}
           >
             {showMaps ? 'Hide' : 'Show'}
           </button>
         </div>
-        <button onClick={handleSaveMaps} className="btn-cyan w-full py-2 text-sm">Save Maps Key</button>
-        {mapsKey && (
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-400" />
-            <span className="text-xs" style={{ color: '#22c55e' }}>Key saved</span>
-          </div>
-        )}
+        <button onClick={handleSaveMaps} className="btn-cyan w-full py-2 text-sm">Save</button>
       </div>
 
-      {/* Status */}
+      {/* Device Status */}
       <div className="card rounded-xl p-5 space-y-3">
         <h2 className="font-rajdhani font-bold text-lg" style={{ color: 'var(--text)' }}>Device Status</h2>
         <div className="space-y-2 text-sm">
           {[
             { label: 'AI Diagnostics', available: true, note: 'Server-powered' },
             { label: 'OBD2 Bluetooth', available: typeof window !== 'undefined' && !!(navigator as unknown as { bluetooth?: unknown }).bluetooth, note: 'Chrome required' },
-            { label: 'Camera Access', available: typeof window !== 'undefined' && !!navigator.mediaDevices, note: 'HTTPS required' },
-            { label: 'Garage Finder Map', available: !!mapsKey, note: mapsKey ? 'Key saved' : 'Add Maps key above' },
+            { label: 'Camera', available: typeof window !== 'undefined' && !!navigator.mediaDevices, note: 'HTTPS required' },
           ].map(item => (
             <div key={item.label} className="flex items-center justify-between">
-              <div>
-                <span style={{ color: 'var(--muted)' }}>{item.label}</span>
-                <span className="text-xs ml-2" style={{ color: 'var(--muted)', opacity: 0.6 }}>{item.note}</span>
-              </div>
-              <span className={`text-xs font-bold ${item.available ? 'text-green-300' : 'text-red-300'}`}>
-                {item.available ? 'Ready' : 'Not available'}
-              </span>
+              <span style={{ color: 'var(--muted)' }}>{item.label} <span style={{ opacity: 0.5 }}>— {item.note}</span></span>
+              <span className={`text-xs font-bold ${item.available ? 'text-green-300' : 'text-red-300'}`}>{item.available ? 'Ready' : 'N/A'}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Danger Zone */}
+      {/* Data */}
       <div className="rounded-xl p-5 space-y-3" style={{ background: 'rgba(255,36,41,0.06)', border: '1px solid rgba(255,36,41,0.2)' }}>
-        <h2 className="font-rajdhani font-bold text-lg" style={{ color: '#ff2429' }}>Danger Zone</h2>
-        <p className="text-sm" style={{ color: 'var(--muted)' }}>
-          Delete all stored scans, vehicles, service history, and chat history from this device.
-        </p>
-        <button onClick={handleClearAll} className="btn-red w-full py-3">Clear All App Data</button>
+        <h2 className="font-rajdhani font-bold text-lg" style={{ color: '#ff2429' }}>Data</h2>
+        <p className="text-sm" style={{ color: 'var(--muted)' }}>Clear locally cached scans and history from this device.</p>
+        <button onClick={handleClearData} className="btn-red w-full py-3">Clear Local Data</button>
       </div>
 
       {/* About */}

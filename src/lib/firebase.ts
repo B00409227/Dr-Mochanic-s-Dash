@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app'
-import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, limit, doc, setDoc, getDoc } from 'firebase/firestore'
+import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, limit, doc, setDoc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore'
 import type { CommunityFault, DigitalTwin } from '@/types'
 
 const firebaseConfig = {
@@ -75,5 +75,63 @@ export async function getDigitalTwin(deviceId: string, reg: string): Promise<Dig
   } catch (e) {
     console.warn('Firebase getDigitalTwin failed:', e)
     return null
+  }
+}
+
+export interface UserProfile {
+  uid: string
+  email: string
+  displayName: string
+  photoURL: string
+  role: 'customer' | 'admin'
+  createdAt: unknown
+  lastSeen: unknown
+  vehicles: string[]
+}
+
+export async function createOrUpdateUserProfile(user: { uid: string; email?: string | null; displayName?: string | null; photoURL?: string | null }): Promise<void> {
+  try {
+    const db = getDb()
+    if (!db) return
+    const ref = doc(db, 'users', user.uid)
+    const snap = await getDoc(ref)
+    if (!snap.exists()) {
+      await setDoc(ref, {
+        uid: user.uid,
+        email: user.email || '',
+        displayName: user.displayName || '',
+        photoURL: user.photoURL || '',
+        role: 'customer',
+        createdAt: serverTimestamp(),
+        lastSeen: serverTimestamp(),
+        vehicles: [],
+      })
+    } else {
+      await updateDoc(ref, { lastSeen: serverTimestamp() })
+    }
+  } catch (e) {
+    console.warn('createOrUpdateUserProfile failed:', e)
+  }
+}
+
+export async function getUserProfile(uid: string): Promise<UserProfile | null> {
+  try {
+    const db = getDb()
+    if (!db) return null
+    const snap = await getDoc(doc(db, 'users', uid))
+    if (!snap.exists()) return null
+    return snap.data() as UserProfile
+  } catch {
+    return null
+  }
+}
+
+export async function updateUserVehicles(uid: string, vehicles: string[]): Promise<void> {
+  try {
+    const db = getDb()
+    if (!db) return
+    await updateDoc(doc(db, 'users', uid), { vehicles })
+  } catch (e) {
+    console.warn('updateUserVehicles failed:', e)
   }
 }
