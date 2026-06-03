@@ -1,16 +1,8 @@
 'use client'
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function DashHeader() {
-  const [hasKey, setHasKey] = useState(false)
-
-  useEffect(() => {
-    const key = localStorage.getItem('drm_gemini_key')
-    setHasKey(!!key)
-  }, [])
-
   return (
     <header
       className="sticky top-0 z-40"
@@ -34,10 +26,8 @@ export default function DashHeader() {
         <div className="flex items-center gap-3">
           {/* AI status */}
           <div className="flex items-center gap-1.5">
-            <div className={`w-2 h-2 rounded-full ${hasKey ? 'bg-green-400' : 'bg-red-500'}`} />
-            <span className="text-xs hidden sm:block" style={{ color: 'var(--muted)' }}>
-              {hasKey ? 'AI Ready' : 'No API Key'}
-            </span>
+            <div className="w-2 h-2 rounded-full bg-green-400" style={{ boxShadow: '0 0 6px rgba(74,222,128,0.6)' }} />
+            <span className="text-xs hidden sm:block" style={{ color: 'var(--muted)' }}>AI Online</span>
           </div>
 
           {/* Settings */}

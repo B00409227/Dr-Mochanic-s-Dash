@@ -72,10 +72,9 @@ export default function DrMochanicChat() {
       if (!isOpen) setHasUnread(true)
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : 'Unknown error'
-      let content = "Something went wrong on my end — give it another try in a sec."
-      if (errMsg === 'NO_API_KEY') {
-        content = "You'll need to add your free Gemini API key in Settings before I can chat with you. Head to Settings and paste it in — takes about 2 minutes to get one from aistudio.google.com."
-      }
+      const content = errMsg.includes('not configured')
+        ? "My AI connection is being set up — check back in a moment."
+        : "Something went wrong on my end — give it another try in a sec."
       const errorMsg: ChatMessage = { id: crypto.randomUUID(), role: 'assistant', content, timestamp: Date.now() }
       setMessages(prev => [...prev, errorMsg])
     } finally {

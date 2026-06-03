@@ -52,9 +52,9 @@ export default function WebsiteChatPage() {
       saveChatMessage(assistantMsg)
     } catch (err) {
       const msg = err instanceof Error ? err.message : ''
-      const content = msg === 'NO_API_KEY'
-        ? "To use the chat you need a free Gemini API key. Open Dr Mochanic's Dash app and add your key in Settings. Get one free at aistudio.google.com."
-        : "Something went wrong — try again in a sec."
+      const content = msg.includes('not configured')
+        ? "My AI connection is being set up — check back in a moment."
+        : "Something went wrong on my end — give it another try in a sec."
       const errorMsg: ChatMessage = { id: crypto.randomUUID(), role: 'assistant', content, timestamp: Date.now() }
       setMessages(prev => [...prev, errorMsg])
     } finally {
