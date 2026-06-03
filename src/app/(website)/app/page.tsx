@@ -8,7 +8,7 @@ const FEATURES = [
   { icon: '🔄', title: 'Tyre Tread Check', desc: 'Photo your tyres using the 20p coin test. AI estimates tread depth and tells you if they are safe, worn, or illegal.' },
   { icon: '📊', title: 'Live Dashboard', desc: 'Real-time RPM, speed, coolant temperature, throttle, fuel level and more — displayed as animated gauges with historical graphs.' },
   { icon: '👥', title: 'Community Intelligence', desc: 'Anonymous fault reporting from UK drivers. See what problems other owners of your exact model are experiencing right now.' },
-  { icon: '🛠️', title: "Mechanic's Eye", desc: 'Multi-photo inspection tool. Upload up to 12 photos for AI to perform a full visual inspection — MOT readiness score included.' },
+  { icon: '🛠️', title: "Mochanic's Eye", desc: 'Multi-photo inspection tool. Upload up to 12 photos for AI to perform a full visual inspection — MOT readiness score included.' },
   { icon: '⚙️', title: 'Service History', desc: 'Log all your services in one place. AI tracks what is due and gives personalised maintenance recommendations for your vehicle.' },
   { icon: '💬', title: 'Dr Mochanic AI Chat', desc: 'Chat with your AI mechanic 24/7. Diagnose problems, understand repairs, check if quotes are fair — all in plain English.' },
 ]

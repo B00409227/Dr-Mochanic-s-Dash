@@ -75,7 +75,7 @@ const QUICK_ACTIONS = [
   { href: '/dash/scan?mode=upload', label: 'Upload Photo', icon: '🖼️', desc: 'Photo upload' },
   { href: '/dash/obd2', label: 'OBD2 Lookup', icon: '🔌', desc: 'Code lookup' },
   { href: '/dash/livestream', label: 'Live Stream', icon: '📡', desc: 'Live data' },
-  { href: '/dash/mechanics-eye', label: "Mechanic's Eye", icon: '🔍', desc: 'Full inspection' },
+  { href: '/dash/mechanics-eye', label: "Mochanic's Eye", icon: '🔍', desc: 'Full inspection' },
   { href: '/dash/sound', label: 'Sound Diagnosis', icon: '🔊', desc: 'Audio AI' },
 ]
 

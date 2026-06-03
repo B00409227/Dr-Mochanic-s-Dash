@@ -68,7 +68,7 @@ export default function WebsiteChatPage() {
         <h1 className="font-orbitron text-2xl sm:text-3xl mb-2" style={{ color: 'var(--text)' }}>
           Meet <span style={{ color: 'var(--cyan)' }}>Dr Mochanic</span>
         </h1>
-        <p className="font-rajdhani text-lg" style={{ color: 'var(--muted)' }}>Your AI Mechanic — Available 24/7</p>
+        <p className="font-rajdhani text-lg" style={{ color: 'var(--muted)' }}>Your AI Mochanic — Available 24/7</p>
       </div>
 
       <div className="grid lg:grid-cols-4 gap-6">

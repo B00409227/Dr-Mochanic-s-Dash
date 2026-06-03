@@ -16,7 +16,7 @@ function severityColor(s: string) {
   return 'var(--cyan)'
 }
 
-export default function MechanicsEyePage() {
+export default function MochanicsEyePage() {
   const [photos, setPhotos] = useState<(string | null)[]>(Array(12).fill(null))
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<InspectionResult | null>(null)
@@ -52,7 +52,7 @@ export default function MechanicsEyePage() {
     <div className="px-4 py-6 max-w-2xl mx-auto space-y-5">
       {loading && <LoadingRadar text="Inspecting vehicle..." />}
       <div className="flex items-center justify-between">
-        <h1 className="font-orbitron text-xl" style={{ color: 'var(--text)' }}>Mechanic&apos;s Eye</h1>
+        <h1 className="font-orbitron text-xl" style={{ color: 'var(--text)' }}>Mochanic&apos;s Eye</h1>
         <span className="text-sm font-rajdhani font-bold" style={{ color: 'var(--cyan)' }}>{captured}/12</span>
       </div>
 
